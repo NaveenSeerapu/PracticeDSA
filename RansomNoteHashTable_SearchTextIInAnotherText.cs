@@ -83,7 +83,43 @@ class Solution {
 
     // Complete the checkMagazine function below.
     static void checkMagazine(string[] magazine, string[] note) {
-
+        Dictionary<string, int> d = new Dictionary<string, int>();
+        bool isValidMagazine = true;
+        for(int i = 0; i < magazine.Length; i++)
+        {
+            if(d.ContainsKey(magazine[i]))
+                d[magazine[i]]++;
+            else 
+                d[magazine[i]] = 1; 
+        }
+        foreach(string s in note)
+        {
+            if(!d.ContainsKey(s))
+            {
+                isValidMagazine = false;
+                break;
+            }
+            else
+            {
+                if(d[s] > 0)
+                    d[s]--;
+                else
+                {
+                    isValidMagazine = false;
+                    break;
+                }
+                    
+            }
+        }
+        
+        if(isValidMagazine)
+        {
+            Console.WriteLine("Yes");
+        }
+        else
+        {
+            Console.WriteLine("No");
+        }
 
     }
 
